@@ -167,10 +167,14 @@ abstract class _RxImpl<T> extends GetListenable<T> with RxObjectMixin<T> {
   /// });
   /// print( person );
   /// ```
-  void update(T Function(T? val) fn) {
-    value = fn(value);
+  void update(T? Function(T? val) fn) {
+    T? tmp = fn(value);
+    if(tmp!=null){
+      value = tmp;
+    }
     // subject.add(value);
   }
+
 
   /// Following certain practices on Rx data, we might want to react to certain
   /// listeners when a value has been provided, even if the value is the same.
