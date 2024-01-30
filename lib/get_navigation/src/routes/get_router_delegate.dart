@@ -344,11 +344,12 @@ class GetDelegate extends RouterDelegate<RouteDecoder>
     dynamic id,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
+    bool rebuildStack = false,
   }) async {
     final args = _buildPageSettings(page, arguments);
     final route = _getRouteDecoder<T>(args);
     if (route != null) {
-      return _push<T>(route);
+      return _push<T>(route,rebuildStack:rebuildStack);
     } else {
       goToUnknownPage();
     }
